@@ -1,0 +1,20 @@
+---
+- name: Verify Nginx Installation
+  hosts: all
+  gather_facts: no
+  tasks:
+
+    - name: Check if Nginx package is installed
+      ansible.builtin.package:
+        name: nginx
+        state: present
+      register: nginx_package
+      failed_when: nginx_package is failed
+
+    - name: Ensure Nginx service is running
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+      register: nginx_service
+      failed_when: not nginx_service.status.ActiveState == "active"

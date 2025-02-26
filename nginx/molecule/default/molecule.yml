@@ -1,0 +1,26 @@
+---
+driver:
+  name: podman
+
+platforms:
+  - name: ubi9-container
+    hostname: ubi9-container
+    image: registry.access.redhat.com/ubi9/ubi
+    privileged: true
+    command: "/sbin/init"
+
+provisioner:
+  inventory:
+    hosts:
+      all:
+        hosts:
+          ubi9-container:
+            ansible_python_interpreter: /usr/bin/python3
+  name: ansible
+  # log: true
+  # playbooks:
+  #   prepare: ../prepare.yml
+
+verifier:
+  name: ansible
+  #name: testinfra

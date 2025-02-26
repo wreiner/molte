@@ -1,0 +1,16 @@
+---
+- name: Prepare test container
+  hosts: all
+  tasks:
+    - name: Install dependencies for testing
+      ansible.builtin.package:
+        name:
+          - python3-pip
+          - python3
+        state: present
+
+    - name: Install pytest and testinfra
+      ansible.builtin.pip:
+        name:
+          - pytest
+          - testinfra

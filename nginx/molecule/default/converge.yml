@@ -1,0 +1,5 @@
+---
+- name: Verify Install Nginx Role
+  hosts: all
+  roles:
+    - nginx
