@@ -13,14 +13,14 @@ components:
       args: ['tail', '-f', '/dev/null']
       # env:
       #   - name: 'ANSIBLE_COLLECTIONS_PATH'
-      #     value: '~/.ansible/collections:/usr/share/ansible/collections:/projects/devspaces-molecule-test/collections'
+      #     value: '~/.ansible/collections:/usr/share/ansible/collections:/projects/molte/collections'
 commands:
 
   - id: molecule-create
     exec:
       label: "1.Molecule: start a test pod for the automation"
       commandLine: 'source $HOME/.bashrc && molecule create'
-      workingDir: ${PROJECTS_ROOT}/devspaces-molecule-test/nginx
+      workingDir: ${PROJECTS_ROOT}/molte/nginx
       group:
         kind: run
         isDefault: true
@@ -30,7 +30,7 @@ commands:
     exec:
       label: "2.Molecule: view the test instance that was created"
       commandLine: 'source $HOME/.bashrc && molecule list'
-      workingDir: ${PROJECTS_ROOT}/devspaces-molecule-test/nginx
+      workingDir: ${PROJECTS_ROOT}/molte/nginx
       group:
         kind: run
         isDefault: true
@@ -40,7 +40,7 @@ commands:
     exec:
       label: "3.Molecule: apply the role to the pod"
       commandLine: 'source $HOME/.bashrc && molecule converge'
-      workingDir: ${PROJECTS_ROOT}/devspaces-molecule-test/nginx
+      workingDir: ${PROJECTS_ROOT}/molte/nginx
       group:
         kind: run
         isDefault: true
@@ -50,7 +50,7 @@ commands:
     exec:
       label: "4.Molecule: run the verification against the test pod"
       commandLine: 'source $HOME/.bashrc && molecule verify'
-      workingDir: ${PROJECTS_ROOT}/devspaces-molecule-test/nginx
+      workingDir: ${PROJECTS_ROOT}/molte/nginx
       group:
         kind: run
         isDefault: true
@@ -60,7 +60,7 @@ commands:
     exec:
       label: "5.Molecule: reset the test pod back to a fresh instance"
       commandLine: 'source $HOME/.bashrc && molecule destroy'
-      workingDir: ${PROJECTS_ROOT}/devspaces-molecule-test/nginx
+      workingDir: ${PROJECTS_ROOT}/molte/nginx
       group:
         kind: run
         isDefault: true
@@ -70,7 +70,7 @@ commands:
     exec:
       label: "6.Molecule: run the full molecule test"
       commandLine: 'source $HOME/.bashrc && molecule test'
-      workingDir: ${PROJECTS_ROOT}/devspaces-molecule-test/nginx
+      workingDir: ${PROJECTS_ROOT}/molte/nginx
       group:
         kind: run
         isDefault: true
