@@ -10,8 +10,9 @@ driver:
     ansible_connection_options:
       connection: local
 platforms:
-  - name: molecule-ubi8-python-1
-    image: registry.access.redhat.com/ubi8/python-39@sha256:301fec66443f80c3cc507ccaf72319052db5a1dc56deb55c8f169011d4bbaacb
+  - name: molecule-ubi9-1
+    # image: registry.access.redhat.com/ubi8/python-39@sha256:301fec66443f80c3cc507ccaf72319052db5a1dc56deb55c8f169011d4bbaacb
+    image: registry.access.redhat.com/ubi9/ubi
     workingDir: '/tmp'
 provisioner:
   name: ansible
