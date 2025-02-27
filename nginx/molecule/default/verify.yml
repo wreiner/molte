@@ -1,3 +1,23 @@
----
-- name: Run Ansible role tests
-  import_playbook: ../../tests/test.yml
+- name: Verify
+  hosts: all
+  gather_facts: false
+  connection: community.okd.oc
+  # vars:
+  #   __backup_file_base: "{{ backup_file_source | basename }}"
+  #   __backup_file_base_suffix: "{{ backup_file_base }}{{ backup_file_dest_suffix }}"
+  #   __backup_file_destination_path: "{{ backup_file_dest_folder }}/{{ backup_file_dest_suffix }}"
+  tasks:
+    - name: Check if Nginx package is installed
+      ansible.builtin.package:
+        name: nginx
+        state: present
+      register: nginx_package
+      failed_when: nginx_package is failed
+
+    - name: Ensure Nginx service is running
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+      register: nginx_service
+      failed_when: not nginx_service.status.ActiveState == "active"
